@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
-    <link rel="stylesheet" href="/koi-boarding/assets/uni.98d5a915.css">
-
     <meta charset="UTF-8" />
-    <script>
-      var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
-        CSS.supports('top: constant(a)'))
-      document.write(
-        '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
-        (coverSupport ? ', viewport-fit=cover' : '') + '" />')
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f6f0e6" />
     <title>锦鲤寄养助手</title>
-    <link rel="icon" href="/koi-boarding/static/favicon.png" />
-    <!--preload-links-->
-    <!--app-context-->
-    <script type="module" crossorigin src="/koi-boarding/assets/index-BAsX5ADT.js"></script>
-    <link rel="stylesheet" crossorigin href="/koi-boarding/assets/index-Bi5XA2tt.css">
+    <script>
+      (function () {
+        var path = location.pathname;
+        var base = path.indexOf("/koi-boarding") === 0 ? "/koi-boarding/" : "./";
+        document.documentElement.dataset.base = base;
+        document.write('<link rel="icon" href="' + base + 'static/favicon.png" />');
+        document.write('<link rel="stylesheet" href="' + base + 'app.css" />');
+      })();
+    </script>
+    <style>
+      html, body { margin: 0; background: #f6f0e6; color: #241c16; }
+      #app { min-height: 100vh; }
+      .boot { font-family: "Songti SC", "SimSun", serif; padding: 48px 24px; font-size: 22px; }
+    </style>
   </head>
   <body>
-    <div id="app"><!--app-html--></div>
+    <div id="app" class="sheet"><p class="boot">正在打开寄养档案…</p></div>
+    <p id="toast" class="toast" hidden></p>
+    <script>
+      (function () {
+        var base = document.documentElement.dataset.base || "./";
+        var script = document.createElement("script");
+        script.type = "module";
+        script.src = base + "app.js";
+        document.body.appendChild(script);
+      })();
+    </script>
   </body>
 </html>
